@@ -22,6 +22,25 @@ public class JulianDay {
     double second;
 
     /**
+     * Constructor for a Julian day 
+     * @param y Year
+     * @param m Month
+     * @param d Day
+     * @param hour Hour
+     * @param minute Minute 
+     * @param second Second 
+     */
+     public JulianDay(int year, int month, int day, int hour, int minute, double second) {
+        if (isInvalid(year, month, day)) throw new IllegalArgumentException("Date is invalid");
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.hour = hour;
+        this.minute = minute;
+        this.second = second;
+    }
+
+    /**
      * Constructor for a Julian day at 0h
      * @param y Year
      * @param m Month
@@ -43,7 +62,6 @@ public class JulianDay {
      * @param t Time from 1970-1-1 in milliseconds
      */
     public JulianDay(long t) {
-        System.out.println("1970: " + dateToJulianDay(1970, 1, 1, false));
         setFromJd(dateToJulianDay(1970, 1, 1, false) + t / 86400000.0);
     }
 
@@ -113,7 +131,7 @@ public class JulianDay {
      * invalid between October 5, 1582 and October 14, 1582.
      * @return true if the date is invalid, false otherwise.
      */
-    public boolean isInvalid(final int year, final int month, final int day) {
+    private boolean isInvalid(final int year, final int month, final int day) {
         return (year == 1582 && month == 10 && (day >= 5 && day < 15));
     }
 
@@ -167,7 +185,7 @@ public class JulianDay {
             System.out.println("JD:      " + jd.getJulianDay());
             System.out.println("STR:     " + jd.toString());
             System.out.println("Julian?  " + jd.isJulian());
-            System.out.println("Invalid? " + jd.isInvalid());
+            System.out.println("Invalid? " + jd.isInvalid(jd.year, jd.month, jd.day));
             jd.setFromJd(jd.getJulianDay());
             jd.setDayFraction(jd.getDayFraction());
             System.out.println("NOW:     " + jd.toString());
