@@ -14,12 +14,12 @@ package journal;
 public class JulianDay {
 
     /** Instance field */
-    private int year;
-    private int month;
-    private int day;
-    private int hour;
-    private int minute;
-    private double second;
+    int year;
+    int month;
+    int day;
+    int hour;
+    int minute;
+    double second;
 
     /**
      * Constructor for a Julian day at 0h
@@ -43,6 +43,7 @@ public class JulianDay {
      * @param t Time from 1970-1-1 in milliseconds
      */
     public JulianDay(long t) {
+        System.out.println("1970: " + dateToJulianDay(1970, 1, 1, false));
         setFromJd(dateToJulianDay(1970, 1, 1, false) + t / 86400000.0);
     }
 
@@ -166,7 +167,7 @@ public class JulianDay {
             System.out.println("JD:      " + jd.getJulianDay());
             System.out.println("STR:     " + jd.toString());
             System.out.println("Julian?  " + jd.isJulian());
-            // System.out.println("Invalid? " + jd.isInvalid());
+            System.out.println("Invalid? " + jd.isInvalid());
             jd.setFromJd(jd.getJulianDay());
             jd.setDayFraction(jd.getDayFraction());
             System.out.println("NOW:     " + jd.toString());
